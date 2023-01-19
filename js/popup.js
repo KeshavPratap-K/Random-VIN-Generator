@@ -9,6 +9,7 @@ let randomRealButton;
 let randomLabel;
 let realLabel;
 let realButtonChecked = false;
+let darkModeSwitch;
 
 
 
@@ -20,6 +21,7 @@ window.onload=function(){
     randomRealButton = document.getElementById("randomRealButton");
     randomLabel = document.getElementById("randomLabel");
     realLabel = document.getElementById("realLabel");
+    darkModeSwitch = document.getElementById("DarkModeSwitch");
 
     let toolTipValue = toolTip.innerHTML;
 
@@ -27,19 +29,30 @@ window.onload=function(){
     randomRealButton.addEventListener('change', (event) => {
         if (event.target.checked) {
             realButtonChecked = true;
-            realLabel.classList.add("labelBold");
-            realLabel.classList.remove("labelDimmer");
-            randomLabel.classList.add("labelDimmer");
-            randomLabel.classList.remove("labelBold");
 
         }
         else {
-            realButtonChecked = true;
-            realLabel.classList.add("labelDimmer");
-            realLabel.classList.remove("labelBold");
-            randomLabel.classList.add("labelBold");
-            randomLabel.classList.remove("labelDimmer");
+            realButtonChecked = false;
         }
+    });
+
+    darkModeSwitch.addEventListener('change',  (event) => {
+        if (event.target.checked) {
+
+            document.body.style.color = 'white';
+            document.body.style.background = '#292a2d';
+            document.getElementById("VINSwitchToggle").style.backgroundColor = '#555555';
+
+        }
+
+        else {
+
+            document.body.style.color = 'black';
+            document.body.style.background = 'white';
+            document.getElementById("VINSwitchToggle").style.backgroundColor = '#fff';
+
+        }
+
     });
 
     copyButton.addEventListener('click', function() {

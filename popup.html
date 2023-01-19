@@ -8,20 +8,22 @@
     <link rel="stylesheet" href="css/popup.css">
   </head>
   <body>
-  <div class="root">
-    <h1>Random VIN Generator</h1>
-    <hr>
-  <div class="switch-container">
+  <h1>Random VIN Generator</h1>
 
-    <label id="randomLabel" class="switchLabel labelBold">Random VIN</label>
-    <label class="switch">
-      <input id="randomRealButton" type="checkbox">
-      <span class="slider round"></span>
-    </label>
-    <label id="realLabel" class="switchLabel labelDimmer">Real VIN</label>
+  <input type="checkbox" id="randomRealButton" checked>
+  <div class="VINSwitchContainer">
+    <div class="VINSwitchContent">
+      <label class="VINSwitchToggleLabel" for="randomRealButton">
+        <div class="VINSwitchToggle" id="VINSwitchToggle"></div>
+        <div class="VINSwitchNames">
+          <p class="light">Random</p>
+          <p class="dark">Real</p>
+        </div>
+      </label>
+    </div>
   </div>
 
-    <hr>
+  <div class="root">
 
   <div>
     <div class="inputContainer">
@@ -51,7 +53,12 @@
     !-->
   </div>
   </div>
+
+
   <div class="footer">
+
+    <label class="switch">
+    </label>
     <div class="code">
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code">
         <polyline points="16 18 22 12 16 6"/>
@@ -59,6 +66,7 @@
       </svg>
       <p style="margin-left: 0.3rem">GitHub</p>
     </div>
+
   </div>
     <script src="js/popup.js"></script>
   </body>

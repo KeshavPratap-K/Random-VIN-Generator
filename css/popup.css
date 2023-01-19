@@ -25,10 +25,6 @@ body{
     align-items: center;
 }
 
-.switchLabel{
-    margin: 1rem;
-}
-
 .switch {
     position: relative;
     display: inline-block;
@@ -88,14 +84,6 @@ input:checked + .slider:before {
     border-radius: 5px;
 }
 
-.labelBold{
-    font-weight: bold;
-    font-size: large;
-}
-
-.labelDimmer{
-    color: #d1d1d1;
-}
 
 .inputContainer{
     display: flex;
@@ -105,17 +93,18 @@ input:checked + .slider:before {
 
 .copy-text {
     padding: 5px;
-    background: #fff;
-    border: 1px solid #ddd;
+    background: #555;
+    border: 1px solid #777;
     border-radius: 5px;
 }
 .copy-text input.text {
     padding: 0 10px;
-    color: #000;
+    color: inherit;
     border: none;
     outline: none;
     text-align: center;
     font-size: medium;
+    background: transparent;
 
 }
 .copy-text button {
@@ -172,10 +161,11 @@ input:checked + .slider:before {
 
 .reset-button {
    background-color: #FFFFFF;
-   border: 1px solid #222222;
+   border: 1px solid #ddd;
    border-radius: 5px;
    box-sizing: border-box;
-   padding: 13px 13px;
+   margin-left: 0.1rem;
+   padding: 10px 10px;
    transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
 }
 
@@ -192,14 +182,76 @@ input:checked + .slider:before {
 
 
 .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-top: 3rem;
     width: 100%;
-    opacity: 0.15;
-    font-size: x-small;
+
+}
+
+.VINSwitchContent {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    text-align: center;
+    width: 70%;
+    transform: translateY(5%);
+}
+
+.VINSwitchToggleLabel, .VINSwitchToggle {
+    height: 2.8rem;
+    border-radius: 100px;
+}
+.VINSwitchToggleLabel {
+    width: 100%;
+    background-color: rgba(0,0,0,.1);
+    border-radius: 100px;
+    position: relative;
+    margin: 1.8rem 0 4rem 0;
+    cursor: pointer;
+
+}
+.VINSwitchToggle {
+    position: absolute;
+    width: 50%;
+    background-color: #555555;
+    box-shadow: 0 2px 15px rgba(0,0,0,.15);
+    transition: transform .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.VINSwitchNames {
+    font-size: 90%;
+    font-weight: bolder;
+    width: 65%;
+    margin-left: 17.5%;
+    margin-top: .5%;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    user-select: none;
+}
+.dark {
+    opacity: .5;
+}
+
+/* -------- Switch Styles ------------*/
+#randomRealButton {
+    display: none;
+}
+/* Toggle */
+#randomRealButton:checked + .VINSwitchContainer .VINSwitchToggle{
+    transform: translateX(100%);
+}
+#randomRealButton:checked + .VINSwitchContainer .dark{
+    opacity: 1;
+}
+#randomRealButton:checked + .VINSwitchContainer .light{
+    opacity: .5;
 }
 
 .footer .code{
+    opacity: 0.15;
+    font-size: x-small;
     display: flex;
     align-items: center;
-    justify-content: right;
 }
