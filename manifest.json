@@ -3,12 +3,21 @@
   "name": "Random VIN Generator",
   "description": "This extension is used to generate valid random and real VIN number for AUTO",
   "version": "1.0",
+  "permissions": [
+    "storage"
+  ],
   "host_permissions": [
     "https://randomvin.com/*"
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "images/default.png"
+    "default_icon": "images/icon-512x512.png"
+  },
+  "icons": {
+    "16": "images/icon-16x16.png",
+    "32": "images/icon-32x32.png",
+    "192": "images/icon-192x192.png",
+    "512": "images/icon-512x512.png"
   },
   "commands": {
     "_execute_action": {

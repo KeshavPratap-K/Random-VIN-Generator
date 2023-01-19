@@ -9,7 +9,7 @@ let randomRealButton;
 let randomLabel;
 let realLabel;
 let realButtonChecked = false;
-let darkModeSwitch;
+//let darkModeSwitch;
 
 
 
@@ -21,12 +21,16 @@ window.onload=function(){
     randomRealButton = document.getElementById("randomRealButton");
     randomLabel = document.getElementById("randomLabel");
     realLabel = document.getElementById("realLabel");
-    darkModeSwitch = document.getElementById("DarkModeSwitch");
+    //darkModeSwitch = document.getElementById("DarkModeSwitch");
 
     let toolTipValue = toolTip.innerHTML;
 
 
     randomRealButton.addEventListener('change', (event) => {
+
+        console.log(randomRealButton.checked.toString());
+        setRandomButtonPref();
+        
         if (event.target.checked) {
             realButtonChecked = true;
 
@@ -36,7 +40,7 @@ window.onload=function(){
         }
     });
 
-    darkModeSwitch.addEventListener('change',  (event) => {
+    /*darkModeSwitch.addEventListener('change',  (event) => {
         if (event.target.checked) {
 
             document.body.style.color = 'white';
@@ -53,7 +57,7 @@ window.onload=function(){
 
         }
 
-    });
+    });*/
 
     copyButton.addEventListener('click', function() {
         copyTextFunction();
@@ -64,12 +68,15 @@ window.onload=function(){
     copyButton.addEventListener('mouseout', function() {
         toolTip.innerHTML = toolTipValue;
     });
-    fetchText().then(vin => {
-        VINText.value = vin;
-    });
+
+    getInitData();
+
+
+    
 }
 
 function copyTextFunction(){
+
     VINText.select();
     toolTip.innerHTML = "Copied: " + VINText.value;
     navigator.clipboard.writeText(VINText.value).then(() => console.log("copied"));
@@ -77,9 +84,47 @@ function copyTextFunction(){
 
 
 function resetFunction(){
+    VINText.value = "";
     fetchText().then(vin => {
         VINText.value = vin;
     });
+}
+
+function setRandomButtonPref(){
+
+    chrome.storage.local.set({'randomButtonPref': randomRealButton.checked.toString()});
+
+}
+
+
+async function getInitData(){
+    
+    let previousVINLocal = await chrome.storage.local.get(['PreviousVIN']);
+    let randomButtonPrefLocal = await chrome.storage.local.get(['randomButtonPref']);
+
+
+    if(previousVINLocal.PreviousVIN === "")
+    {
+        fetchText().then(vin => {
+        VINText.value = vin;
+        });
+    }
+    else
+    {
+        VINText.value = previousVINLocal.PreviousVIN;
+    }
+
+    //console.log(result.PreviousVIN != "");
+    console.log(chrome.storage.local.get(['randomButtonPref']));
+
+    if(randomButtonPrefLocal.randomButtonPref === '')
+    {
+        chrome.storage.local.set({'randomButtonPref': randomRealButton.checked.toString()});
+    }
+    else
+    {
+        randomRealButton.checked = randomButtonPrefLocal.randomButtonPref === 'true';
+    }
 }
 
 async function fetchText() {
@@ -87,7 +132,7 @@ async function fetchText() {
     const options = {method: 'GET', headers: {'Access-Control-Allow-Origin': '*'}};
     let response = await fetch('https://randomvin.com/getvin.php'+urlSuffix, options);
     let data = await response.text();
-    console.log(data);
+    chrome.storage.local.set({'PreviousVIN': data});
     return data;
 }
 

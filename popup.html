@@ -4,20 +4,19 @@
   <meta charset="UTF-8" />
     <title>Hello</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Space+Grotesk">
     <link rel="stylesheet" href="css/popup.css">
   </head>
   <body>
   <h1>Random VIN Generator</h1>
 
-  <input type="checkbox" id="randomRealButton" checked>
+  <input type="checkbox" id="randomRealButton">
   <div class="VINSwitchContainer">
     <div class="VINSwitchContent">
       <label class="VINSwitchToggleLabel" for="randomRealButton">
         <div class="VINSwitchToggle" id="VINSwitchToggle"></div>
         <div class="VINSwitchNames">
-          <p class="light">Random</p>
-          <p class="dark">Real</p>
+          <p class="light">Random VIN</p>
+          <p class="dark">Real VIN</p>
         </div>
       </label>
     </div>
@@ -28,7 +27,7 @@
   <div>
     <div class="inputContainer">
       <div class="copy-text">
-        <input id = "VINText" type="text" class="text" placeholder="VIN loading.." disabled/>
+        <input id = "VINText" type="text" class="text" placeholder=" Loading..." disabled/>
         <div class="tooltip">
           <button id="copyButton">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy">
@@ -57,15 +56,19 @@
 
   <div class="footer">
 
+    <!-- <div style="scale: 60%">
     <label class="switch">
+      <input id="DarkModeSwitch" type="checkbox" checked>
+      <span class="slider round"></span>
     </label>
-    <div class="code">
+    </div>!-->
+    <a class="code" href = "https://github.com/KeshavPratap-K/Random-VIN-Generator" target="_blank">
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code">
         <polyline points="16 18 22 12 16 6"/>
         <polyline points="8 6 2 12 8 18"/>
       </svg>
       <p style="margin-left: 0.3rem">GitHub</p>
-    </div>
+    </a>
 
   </div>
     <script src="js/popup.js"></script>
