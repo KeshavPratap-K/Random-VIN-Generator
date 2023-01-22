@@ -14,6 +14,7 @@ let realButtonChecked = false;
 
 
 window.onload=function(){
+
     toolTip = document.getElementById("myTooltip");
     copyButton = document.getElementById('copyButton');
     VINText = document.getElementById("VINText");
@@ -70,8 +71,6 @@ window.onload=function(){
     });
 
     getInitData();
-
-
     
 }
 
@@ -92,18 +91,18 @@ function resetFunction(){
 
 function setRandomButtonPref(){
 
-    chrome.storage.local.set({'randomButtonPref': randomRealButton.checked.toString()});
+    browser.storage.local.set({'randomButtonPref': randomRealButton.checked.toString()});
 
 }
 
 
 async function getInitData(){
+
     
-    let previousVINLocal = await chrome.storage.local.get(['PreviousVIN']);
-    let randomButtonPrefLocal = await chrome.storage.local.get(['randomButtonPref']);
+    let previousVINLocal = await browser.storage.local.get('PreviousVIN');
+    let randomButtonPrefLocal = await browser.storage.local.get('randomButtonPref');
 
-
-    if(previousVINLocal.PreviousVIN === "")
+    if(previousVINLocal.PreviousVIN == undefined || previousVINLocal.PreviousVIN == '')
     {
         fetchText().then(vin => {
         VINText.value = vin;
@@ -115,11 +114,11 @@ async function getInitData(){
     }
 
     //console.log(result.PreviousVIN != "");
-    console.log(chrome.storage.local.get(['randomButtonPref']));
+    console.log(browser.storage.local.get('randomButtonPref'));
 
-    if(randomButtonPrefLocal.randomButtonPref === '')
+    if(randomButtonPrefLocal.randomButtonPref == undefined | randomButtonPrefLocal.randomButtonPref == '')
     {
-        chrome.storage.local.set({'randomButtonPref': randomRealButton.checked.toString()});
+        browser.storage.local.set({'randomButtonPref': randomRealButton.checked.toString()});
     }
     else
     {
@@ -132,7 +131,10 @@ async function fetchText() {
     const options = {method: 'GET', headers: {'Access-Control-Allow-Origin': '*'}};
     let response = await fetch('https://randomvin.com/getvin.php'+urlSuffix, options);
     let data = await response.text();
-    chrome.storage.local.set({'PreviousVIN': data});
+    browser.storage.local.set({'PreviousVIN': data});
     return data;
 }
 
+function onError(error) {
+  console.log(error);
+}
