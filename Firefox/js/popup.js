@@ -67,7 +67,7 @@ window.onload=function(){
         resetFunction();
     });
     copyButton.addEventListener('mouseout', function() {
-        toolTip.innerHTML = toolTipValue;
+        toolTip.textContent = toolTipValue;
     });
 
     getInitData();
@@ -77,7 +77,7 @@ window.onload=function(){
 function copyTextFunction(){
 
     VINText.select();
-    toolTip.innerHTML = "Copied: " + VINText.value;
+    toolTip.textContent = "Copied: " + VINText.value;
     navigator.clipboard.writeText(VINText.value).then(() => console.log("copied"));
 }
 
@@ -114,7 +114,7 @@ async function getInitData(){
     }
 
     //console.log(result.PreviousVIN != "");
-    console.log(browser.storage.local.get('randomButtonPref'));
+    //console.log(browser.storage.local.get('randomButtonPref'));
 
     if(randomButtonPrefLocal.randomButtonPref == undefined | randomButtonPrefLocal.randomButtonPref == '')
     {

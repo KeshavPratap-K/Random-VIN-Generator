@@ -28,7 +28,7 @@ window.onload=function(){
 
     randomRealButton.addEventListener('change', (event) => {
 
-        console.log(randomRealButton.checked.toString());
+        //console.log(randomRealButton.checked.toString());
         setRandomButtonPref();
         
         if (event.target.checked) {
@@ -103,7 +103,7 @@ async function getInitData(){
     let randomButtonPrefLocal = await chrome.storage.local.get(['randomButtonPref']);
 
 
-    if(previousVINLocal.PreviousVIN === "")
+    if(previousVINLocal.PreviousVIN == undefined || previousVINLocal.PreviousVIN == '')
     {
         fetchText().then(vin => {
         VINText.value = vin;
@@ -115,9 +115,9 @@ async function getInitData(){
     }
 
     //console.log(result.PreviousVIN != "");
-    console.log(chrome.storage.local.get(['randomButtonPref']));
+    //console.log(chrome.storage.local.get(['randomButtonPref']));
 
-    if(randomButtonPrefLocal.randomButtonPref === '')
+    if(randomButtonPrefLocal.randomButtonPref == undefined | randomButtonPrefLocal.randomButtonPref == '')
     {
         chrome.storage.local.set({'randomButtonPref': randomRealButton.checked.toString()});
     }
