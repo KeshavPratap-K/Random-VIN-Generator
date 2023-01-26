@@ -2,8 +2,6 @@
 
 This extension is used to generate valid random and real VIN number :sparkles:
 
-----
-
 ## About this extension
 
 Users can use this simple extension to generate random valid VIN numbers. 
