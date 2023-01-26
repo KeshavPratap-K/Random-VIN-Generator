@@ -9,7 +9,7 @@ This extension is used to generate valid random and real VIN number :sparkles:
 Users can use this simple extension to generate random valid VIN numbers. 
 Current VIN is stored in user's local storage and cleared on next browser launch. 
 
-![Extension View](https://addons.mozilla.org/user-media/previews/thumbs/277/277927.jpg?modified=1674743767)
+![Extension View](https://addons.mozilla.org/user-media/previews/thumbs/277/277931.jpg)
 
 
 ----
