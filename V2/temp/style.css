@@ -1,0 +1,73 @@
+div {
+    border: solid;
+    border-width: 1px;
+    margin: .2rem;
+}
+body{
+    font-family: "Segoe UI",monospace, Tahoma, sans-serif;
+    width: 25rem;
+    height: fit-content;
+    /*background-color: #292a2d;
+    color: white;*/
+}
+
+.main-container{
+    display: grid;
+    grid-template-areas:"top-left top-center top-right"
+                        " middle-center middle-center middle-center "
+                        " bottom-left  bottom-center   bottom-right " ;
+}
+
+.head-container-left{
+    grid-area: top-left;
+}
+.head-container-center{
+    grid-area: top-center;
+}
+.head-container-right{
+    grid-area: top-right;
+}
+
+.content-container{
+    grid-area: middle-center;
+    height: 20rem;
+}
+
+.foot-container-left{
+    grid-area: bottom-left;
+}
+.foot-container-center{
+    grid-area: bottom-center;
+}
+.foot-container-right{
+    grid-area: bottom-right;
+}
+
+dialog {
+    max-width: calc(100% - 6px - 2em);
+    max-width: 100vw;
+  }
+
+.settings-flex{
+    display: flex;
+    flex-direction: column;    
+}
+
+.settings-flex-item{
+    flex: 1 1 auto;
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    background-color: lightgreen;
+    display: flex;
+    flex-direction: row;
+}
+
+.labelbox {
+    flex: 0 0 35%;
+}
+
+
+.valuebox {
+    flex: 0 0 65%;
+}

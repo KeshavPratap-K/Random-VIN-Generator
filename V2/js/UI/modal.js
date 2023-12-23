@@ -1,11 +1,28 @@
-/*
- * Modal
- *
- * Pico.css - https://picocss.com
- * Copyright 2019-2023 - Licensed under MIT
- */
+//Added seperate event listener instead of onclick to avoid below error
+/*Error : Refused to execute inline event handler because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules extenstion*/
 
-// Config
+toggleModalBtn = document.getElementById('toggleModalBtn');
+toggleModalCloseBtn = document.getElementById('toggleModalCloseBtn');
+toggleModalSaveBtn = document.getElementById('toggleModalSaveBtn');
+toggleModalArticle = document.getElementById('toggleModalArticle');
+
+toggleModalBtn.addEventListener('click', function(event) {
+  toggleModal(event);
+});
+
+toggleModalCloseBtn.addEventListener('click', function(event) {
+  toggleModal(event);
+});
+
+toggleModalSaveBtn.addEventListener('click', function(event) {
+  toggleModal(event);
+  savePreference();
+});
+
+toggleModalArticle.addEventListener('click', function(event) {
+  toggleModal(event);
+});
+
 const isOpenClass = "modal-is-open";
 const openingClass = "modal-is-opening";
 const closingClass = "modal-is-closing";
