@@ -26,6 +26,19 @@
 #VINText{
     opacity: 1;
 }
+
+#historyArryDiv{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.text-center{
+    text-align: center;
+}
+.border-bottom{
+    border-bottom: var(--border-width) solid var(--accordion-border-color);
+}
+
 .mb-0{
     margin-bottom: 0 !important;
 }

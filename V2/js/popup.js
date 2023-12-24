@@ -82,6 +82,8 @@ function setRandomRadioButton(randomVINRadioPref){
 
 async function getInitData(){
     
+    initHistory();
+    
     let previousVINLocal = await getLocalPreviousVIN();
     let randomVINRadioPrefLocal = await getLocalRandomRadioPref();
 
@@ -95,6 +97,7 @@ async function getInitData(){
     else
     {
         VINText.value = previousVINLocal.PreviousVIN;
+        addVINtoHistory(previousVINLocal.PreviousVIN);
     }
 
     //console.log(result.PreviousVIN != "");
@@ -119,6 +122,7 @@ async function fetchText() {
     let data = await response.text();
     //chrome.storage.local.set({'PreviousVIN': data});
     setLocalPreviousVIN(data);
+    addVINtoHistory(data);
     return data;
 }
 
