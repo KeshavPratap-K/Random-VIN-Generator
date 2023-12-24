@@ -1,0 +1,55 @@
+.grid-container{
+    display: grid;grid-template-areas: "1 1";
+    gap: 1rem;
+}
+.flex-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+#editableAutoFillId{
+    
+    border: 1px solid;
+    border-radius: 0.25rem;
+    border-color: var(--secondary-hover);
+    color: var(--secondary-hover);
+    width: 70%;
+    padding: .3rem;
+    margin-bottom: .3rem;
+    
+}
+
+#editableAutoFillId:focus{
+    color: #fff;
+}
+
+#VINText{
+    opacity: 1;
+}
+.mb-0{
+    margin-bottom: 0 !important;
+}
+
+.mt-0{
+    margin-top: 0 !important;
+}
+
+.pb-0{
+    padding-bottom: 0 !important;
+}
+
+.pt-1{
+    padding-top: 1rem !important;
+}
+
+.mt-1{
+    margin-top: 1rem !important;
+}
+
+.mb-1{
+    margin-bottom: 1rem !important;
+}
+
+.sm-button{
+    padding: .2rem .75rem;
+}

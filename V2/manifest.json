@@ -2,9 +2,9 @@
   "manifest_version": 3,
   "name": "Random VIN Generator",
   "description": "This extension is used to generate valid random and real VIN number for AUTO",
-  "version": "1.0",
+  "version": "2.1",
   "permissions": [
-    "storage"
+    "storage", "scripting", "activeTab"
   ],
   "host_permissions": [
     "https://randomvin.com/*"

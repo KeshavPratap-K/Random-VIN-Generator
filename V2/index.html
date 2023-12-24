@@ -5,26 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIN Generator</title>
     <link rel="stylesheet" href="css/pico.css">
-    <style>
-        .grid-container{
-            display: grid;grid-template-areas: "1 1";
-            gap: 1rem;
-        }
-        .flex-container{
-            display: flex;
-            justify-content: space-between;
-            align-items: center; 
-        }
-        #VINText{
-            opacity: 1;
-        }
-        .mb-0{
-            margin-bottom: 0 !important;
-        }
-        .sm-button{
-            padding: .2rem .75rem;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <main class="container">
@@ -46,7 +27,7 @@
                 </svg>
                 <span id="copyBtnSpan">Copy to clipboard</span>
             </button>
-            <button type="button" class="secondary">
+            <button type="button" class="secondary" id="AutoFillPrimaryBtn">
                 Autofill
             </button>
 
@@ -65,35 +46,38 @@
           <a
             href="#close"
             aria-label="Close"
-            class="close"
+            class="close mb-0"
             id="toggleModalArticle"
             data-target="settings-modal"
           ></a>
-          <div class="flex-container">
-            <h3 class="mb-0">Preference</h3>
-            <details role="list" class="mb-0">
-                <summary aria-haspopup="listbox" role="button" class="outline sm-button">Theme</summary>
-                <ul role="listbox">
-                  <li><a href="#" data-theme-switcher="auto">Auto</a></li>
-                  <li><a href="#" data-theme-switcher="light">Light</a></li>
-                  <li><a href="#" data-theme-switcher="dark">Dark</a></li>
-                </ul>
-            </details>
+          <div class="">
+            <h3 class="">Preference</h3>            
           </div>
-          <br/>
-          <table>
+          <table class="mb-0">
             <tbody>
-                
+                <tr>
+                  <td>
+                    <details role="list">
+                      <summary aria-haspopup="listbox" role="button" class="outline sm-button">Theme</summary>
+                      <ul role="listbox">
+                        <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                        <li><a href="#" data-theme-switcher="light">Light</a></li>
+                        <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+                      </ul>
+                  </details>
+                  </td>
+                </tr>
                 <tr>
                     <td>
-                        <input type="checkbox" id="switch-1" name="switch-1" checked />Autofill
-                        <br/>
+                      <div class="flex-container">
+                        <label><input type="checkbox" class="mb-0" id="autoFillCheckBox"/>Autofill</label>
+                        <p contenteditable="true" class="border-solid" id="editableAutoFillId">#testID</p>
+                      </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <fieldset>
-                            <br/>
+                        <fieldset class="mt-0 mb-0">
                             <label>
                               <input type="radio" id="randomRadio" name="RandomOrRealRadio" value="random" checked />
                               Random VIN
@@ -107,7 +91,7 @@
                 </tr>
             </tbody>
         </table>
-          <footer>
+          <footer class="mb-0 mt-0 pb-0 pt-1">
             <a href="#"
               role="button"
               class="secondary sm-button"
@@ -122,11 +106,16 @@
         </article>
       </dialog>
   
-
+      <details>
+        <summary><strong>History</strong></summary>
+        <p>11111111111111111</p>
+      </details>
     </main>
 
     <script src="js/UI/minimal-theme-switcher.js"></script>
     <script src="js/UI/modal.js"></script>
     <script src="js/popup.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/autofill.js"></script>
   </body>
 </html>

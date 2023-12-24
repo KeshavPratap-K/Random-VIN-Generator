@@ -14,6 +14,9 @@ window.onload=function(){
     refreshButton = document.getElementById("refreshButton");
     randomRadio = document.getElementById("randomRadio");
     realRadio = document.getElementById("realRadio");
+    autoFillCheckbox = document.getElementById("autoFillCheckBox");
+    editableAutoFillValue = document.getElementById("editableAutoFillId");
+
 
     copyButton.addEventListener('click', function() {
         copyTextFunction();
@@ -46,26 +49,41 @@ function refreshFunction(){
 }
 
 function savePreference(){
-    console.log("save pressed");
-    setRandomRadioPref();
+    console.log("Save pressed");
+    setLocalRandomRadioPref(randomRadio.checked.toString());
+    setLocalEditableAutoFillValue(editableAutoFillValue.innerHTML);
 }
 
-function cancelPreference(){
-    console.log("save pressed");
-    setRandomRadioPref();
+async function cancelPreference(){
+    console.log("Cancel pressed");
+    let editableTextCancel = await getLocalEditableAutoFillValue();
+    let randomRadioCancel = await getLocalRandomRadioPref();
+    let autoFillCheckBoxCancel = await getLocalAutoFillPref();
+    console.log(autoFillCheckBoxCancel.AutoFillCheckBoxPref);
+    setRandomRadioButton(randomRadioCancel.randomVINRadioPref);
+    editableAutoFillValue.innerHTML = editableTextCancel.EditableAutoFillValue;
+    autoFillCheckbox.checked = autoFillCheckBoxCancel.AutoFillCheckBoxPref === "true";
 }
 
-function setRandomRadioPref(){
-
-    chrome.storage.local.set({'randomVINRadioPref': randomRadio.checked.toString()});
-
+function setRandomRadioButton(randomVINRadioPref){
+    if(randomVINRadioPref === 'true')
+            {
+                randomRadio.checked = true;
+                realRadio.checked = false;
+            }
+    else
+        {
+            randomRadio.checked = false
+            realRadio.checked = true
+        }
 }
+
 
 
 async function getInitData(){
     
-    let previousVINLocal = await chrome.storage.local.get(['PreviousVIN']);
-    let randomVINRadioPrefLocal = await chrome.storage.local.get(['randomVINRadioPref']);
+    let previousVINLocal = await getLocalPreviousVIN();
+    let randomVINRadioPrefLocal = await getLocalRandomRadioPref();
 
 
     if(previousVINLocal.PreviousVIN == undefined || previousVINLocal.PreviousVIN == '')
@@ -84,21 +102,14 @@ async function getInitData(){
 
     if(randomVINRadioPrefLocal.randomVINRadioPref == undefined | randomVINRadioPrefLocal.randomVINRadioPref == '')
     {
-        chrome.storage.local.set({'randomVINRadioPref': randomRadio.checked.toString()});
+        setLocalRandomRadioPref(randomRadio.checked.toString());
     }
     else
     {
-        if(randomVINRadioPrefLocal.randomVINRadioPref === 'true')
-            {
-                randomRadio.checked = true;
-                realRadio.checked = false;
-            }
-        else
-            {
-                randomRadio.checked = false
-                realRadio.checked = true
-            }
+        setRandomRadioButton(randomVINRadioPrefLocal.randomVINRadioPref);
     }
+
+    initAutoFill();
 }
 
 async function fetchText() {
@@ -106,7 +117,8 @@ async function fetchText() {
     const options = {method: 'GET', headers: {'Access-Control-Allow-Origin': '*'}};
     let response = await fetch('https://randomvin.com/getvin.php'+urlSuffix, options);
     let data = await response.text();
-    chrome.storage.local.set({'PreviousVIN': data});
+    //chrome.storage.local.set({'PreviousVIN': data});
+    setLocalPreviousVIN(data);
     return data;
 }
 

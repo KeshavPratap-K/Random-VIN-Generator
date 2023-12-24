@@ -12,6 +12,7 @@ toggleModalBtn.addEventListener('click', function(event) {
 
 toggleModalCloseBtn.addEventListener('click', function(event) {
   toggleModal(event);
+  cancelPreference();
 });
 
 toggleModalSaveBtn.addEventListener('click', function(event) {
